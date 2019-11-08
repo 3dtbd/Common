@@ -7,7 +7,7 @@ feature set. Instead this code is intended to be shared across many other code p
 ##BuildUp - A script that allows assets to be automatically "built" in the game window,
 as would commonly be used in RTS or similar games.
 
-![Three buildings being built up](./images/BuildUpDemo.gif)
+![Three buildings being built up](./Images/BuildUpDemo.gif)
 
 # Licensed for Reuse
 
