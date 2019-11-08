@@ -101,7 +101,7 @@ namespace WizardsCode.Animation
                 // Get the first regular expression
                 string re = objectBuildPhases[currentPhase];
                 // find all objects that match the regular expression and activate them
-                BuildMatchingLeaves(objectToBuild.transform, re);
+                BuildMatching(objectToBuild.transform, re);
                 yield return new WaitForSeconds(phaseTime);
                 currentPhase++;
             }
@@ -115,18 +115,20 @@ namespace WizardsCode.Animation
         /// <summary>
         /// Build all the leaves on or below an object that have names matching a regulare expression.
         /// </summary>
-        /// <param name="re"></param>
-        private void BuildMatchingLeaves(Transform parent, string re)
+        /// <param name="obj">The object to consider building. If this object is a parent and matches the RE then all children will be built. If it is a leaf then it will be built if the RE matches or if it is the child of a parent whose RE matches.</param>
+        /// <param name="re">A regular expression to use in matching the name of the parent</param>
+        /// <param name="forceBuild">Build even if the RE does not match?</param>
+        private void BuildMatching(Transform obj, string re, bool forceBuild = false)
         {
-            if (parent.childCount == 0 && Regex.IsMatch(parent.name, re))
+            if (!obj.gameObject.activeSelf && (forceBuild || (obj.childCount == 0 && Regex.IsMatch(obj.name, re))))
             {
-                StartCoroutine(Build(parent, phaseTime));
+                StartCoroutine(Build(obj, phaseTime));
             }
             else
             {
-                for (int i = 0; i < parent.childCount; i++)
+                for (int i = 0; i < obj.childCount; i++)
                 {
-                    BuildMatchingLeaves(parent.GetChild(i), re);
+                    BuildMatching(obj.GetChild(i), re, Regex.IsMatch(obj.name, re));
                 }
             }
         }
