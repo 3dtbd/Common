@@ -4,8 +4,11 @@ This is a library of open source code that is useful across many projects. The c
 in this project is not intended to be standalone. It often does not provide a complete 
 feature set. Instead this code is intended to be shared across many other code projects.
 
-## BuildUp - A script that allows assets to be automatically "built" in the game window,
-as would commonly be used in RTS or similar games.
+## BuildUp
+A script that allows assets to be automatically "built" at runtime,
+as would commonly be used in RTS, City Building or similar games. Just provide a few
+steps in the build process and off it goes. Great for prototyping while you wait for the
+real build artwork.
 
 ![Three buildings being built up](./Images/BuildUpDemo.gif)
 
